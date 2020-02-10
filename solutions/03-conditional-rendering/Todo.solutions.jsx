@@ -1,6 +1,6 @@
 import React from "react";
 
-const Todos = ({ todos, showCompleted }) => {
+const Todo = ({ todos, showCompleted }) => {
   return todos.map((todo, index) => {
     if (showCompleted && todo.completed) {
       return (
@@ -19,4 +19,4 @@ const Todos = ({ todos, showCompleted }) => {
   });
 };
 
-export default Todos;
+export default Todo;
