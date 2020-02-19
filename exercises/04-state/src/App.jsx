@@ -16,7 +16,7 @@ function App() {
         <div className="container">
           <h1 className="h3">Challenge 2 - Character Count</h1>
           <p>Records the amount of words you type!</p>
-          {/* Add CharacterCount here */}
+          {<CharacterCount />}
         </div>
       </div>
     </>
