@@ -12,19 +12,26 @@ const GroceryList = () => {
       cost: 2.79
     }
   ]);
-  const [totalCost, setTotalCost] = useState(0);
+  const [itemName, setItemName] = useState("");
+  const [itemCost, setItemCost] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  }
   const updateList = e => {
     setItems([...items]);
   };
   return (
     <div className="container">
       <div className="card card-body bg-light mb-2">
-        <form className="form-inline">
+        <form className="form-inline" onSubmit={handleSubmit}>
           <input
             className="form-control"
             type="text"
             placeholder="Name of grocery item..."
             aria-label="Name of grocery item..."
+            value={itemName}
+            onChange={e => setItemName(e.target.value)}
           />
           <input
             className="form-control"
@@ -33,6 +40,8 @@ const GroceryList = () => {
             step=".01"
             placeholder="Cost of grocery Item..."
             aria-label="Cost of grocery Item..."
+            value={itemCost}
+            onChange={e => setItemCost(e.target.value)}
           />
           <div>
             <button type="submit" className="btn btn-success">
