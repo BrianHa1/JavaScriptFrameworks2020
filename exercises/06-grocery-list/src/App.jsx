@@ -2,6 +2,20 @@ import React, { useState } from "react";
 import "./App.css";
 
 const GroceryList = () => {
+  const [items, setItems] = useState([
+    {
+      name: "Bananas",
+      cost: 3.99
+    },
+    {
+      name: "Mangos",
+      cost: 2.79
+    }
+  ]);
+  const [totalCost, setTotalCost] = useState(0);
+  const updateList = e => {
+    setItems([...items]);
+  };
   return (
     <div className="container">
       <div className="card card-body bg-light mb-2">
@@ -38,23 +52,28 @@ const GroceryList = () => {
             </tr>
           </thead>
           <tbody>
-            {/**
-             * Complete me. (You can use something else instead of a table if you like)
-             * @example
-             * <tr>
-             *   <td>Toilet Paper</td>
-             *   <td>$1.99</td>
-             *   <td>
-             *     <button aria-label="Delete" title="Delete" ... >
-             *       &times;
-             *     </button>
-             *   </td>
-             * </tr>
-             */}
+          {items.map((item, i) => {
+              return (
+                <tr>
+                  <td>{item.name}</td>
+                  <td>${item.cost}</td>
+                  <td>
+                    {/* <button aria-label="Delete" title="Delete" ... >
+                  &times;
+                </button> */}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         <p className="lead">
-          <strong>Total Cost: {/* Complete me */}</strong>
+          <strong>
+            Total Cost: 
+            {
+              /* Complete me */
+            }
+            </strong>
         </p>
         <div className="text-right">
           <button type="button" className="btn btn-outline-success">
