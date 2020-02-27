@@ -36,6 +36,8 @@ function AddressForm(props) {
           name="firstName"
           type="text"
           className="form-control"
+          value={props.firstName}
+          onChange={props.handleSelection}
         />
       </div>
       <div className="form-group">
@@ -47,6 +49,8 @@ function AddressForm(props) {
           name="lastName"
           type="text"
           className="form-control"
+          value={props.lastName}
+          onChange={props.handleSelection}
         />
       </div>
       <div className="form-group">
@@ -58,6 +62,8 @@ function AddressForm(props) {
           name="addressLine1"
           type="text"
           className="form-control"
+          value={props.addressLine1}
+          onChange={props.handleSelection}
         />
         <p className="help-block text-muted">
           Street address, P.O. box, company name, c/o
@@ -68,13 +74,22 @@ function AddressForm(props) {
         <label htmlFor="city" className="control-label">
           City / Town
         </label>
-        <input id="city" name="city" type="text" className="form-control" />
+        <input id="city"
+          name="city"
+          type="text"
+          className="form-control"
+          value={props.city}
+          onChange={props.handleSelection}/>
       </div>
       <div className="form-group">
         <label htmlFor="state" className="control-label">
           State / Province / Region
         </label>
-        <select id="state" name="state" className="form-control">
+        <select id="state"
+          name="state"
+          className="form-control"
+          value={props.state}
+          onChange={props.handleSelection}>
           <option></option>
           {states.map((state, idx) => {
             return <option key={`state-${idx}`}>{state}</option>;
@@ -91,6 +106,8 @@ function AddressForm(props) {
           name="postalCode"
           type="text"
           className="form-control"
+          value={props.postalCode}
+          onChange={props.handleSelection}
         />
       </div>
 
@@ -98,7 +115,11 @@ function AddressForm(props) {
         <label htmlFor="country" className="control-label">
           Country
         </label>
-        <select id="country" name="country" className="form-control">
+        <select id="country"
+          name="country"
+          className="form-control"
+          value={props.country}
+          onChange={props.handleSelection}>
           <option></option>
           {countries.map((state, idx) => {
             return <option key={`state-${idx}`}>{state}</option>;
@@ -113,8 +134,14 @@ function AddressForm(props) {
 }
 
 AddressForm.propTypes = {
-  setDisplayResults: PropTypes.func.isRequired
-  // And others that you will need to pass in
+  setDisplayResults: PropTypes.func.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  addressLine1: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
+  postalCode: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired
 };
 
 export default AddressForm;

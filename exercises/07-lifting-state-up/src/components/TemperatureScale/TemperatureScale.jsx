@@ -3,7 +3,26 @@ import PropTypes from "prop-types";
 
 function TemperatureScale(props) {
   // Complete me
-  return <></>;
+  return <><div
+    className="btn-group"
+    role="group"
+    aria-label="Convert temperature"
+    value={props.temperature}
+    onChange={e => props.setScale(e.target.value)}
+  >
+  <button
+    className="btn btn-outline-primary"
+    onClick={() => props.setScale("F")}
+  >
+    Fahrenheit
+  </button>
+  <button
+    className="btn btn-outline-primary"
+    onClick={() => props.setScale("C")}
+  >
+    Celsius
+  </button>
+</div></>;
 }
 
 TemperatureScale.propTypes = {
