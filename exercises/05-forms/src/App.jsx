@@ -117,6 +117,8 @@ function App() {
           className="form-control" 
           value={values.country}
           onChange={handleSelection}>
+        <option value="">
+        </option>
         {
           countries.map((country, i) => {
             return (

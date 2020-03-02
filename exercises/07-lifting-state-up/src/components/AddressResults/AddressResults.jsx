@@ -11,14 +11,14 @@ import React from "react";
  * - zipcode / postal code
  * - country
  */
-function AddressResults(props) {
+function AddressResults({values}) {
   return (
     <div className="card card-body bg-light mt-4 mb-4">
       Results:
       <ul className="list-unstyled mb-0">
         {
           /* Add <li></li> tags here */
-          Object.values(props.values).map((value, i) => {
+          Object.values(values).map((value, i) => {
             return <li key={`value-${i}`}>{value}</li>;
           })
         }

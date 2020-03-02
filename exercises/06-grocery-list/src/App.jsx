@@ -2,25 +2,48 @@ import React, { useState } from "react";
 import "./App.css";
 
 const GroceryList = () => {
-  const [items, setItems] = useState([
-    {
-      name: "Bananas",
-      cost: 3.99
-    },
-    {
-      name: "Mangos",
-      cost: 2.79
-    }
-  ]);
-  const [itemName, setItemName] = useState("");
-  const [itemCost, setItemCost] = useState("");
+  const [groceryList, setGroceryList] = useState([]);
+  const [name, setName] = useState("");
+  const [cost, setCost] = useState("");
+  const [hasError, setHasError] = useState(false);
+
+  const addToList = () => {
+    setGroceryList([
+      ...groceryList,
+      {
+        name,
+        cost: parseFloat(cost)
+      }
+    ]);
+    setName("");
+    setCost("");
+  };
+
+  const removeFromList = indexToRemove => {
+    setGroceryList(
+      [...groceryList].filter((item, i) => i !== indexToRemove)
+    );
+  };
+
+  const clearList = () => setGroceryList([]);
+
+  const calculateTotal = () => {
+    return groceryList.reduce((total, item) => {
+      return total + item.cost;
+    }, 0);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-  }
-  const updateList = e => {
-    setItems([...items]);
+    if (name && (cost || cost === 0)){
+      addToList();
+      setHasError(false);
+    }
+    else{
+      setHasError(true);
+    }
   };
+
   return (
     <div className="container">
       <div className="card card-body bg-light mb-2">
@@ -30,8 +53,8 @@ const GroceryList = () => {
             type="text"
             placeholder="Name of grocery item..."
             aria-label="Name of grocery item..."
-            value={itemName}
-            onChange={e => setItemName(e.target.value)}
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
           <input
             className="form-control"
@@ -40,8 +63,8 @@ const GroceryList = () => {
             step=".01"
             placeholder="Cost of grocery Item..."
             aria-label="Cost of grocery Item..."
-            value={itemCost}
-            onChange={e => setItemCost(e.target.value)}
+            value={cost}
+            onChange={e => setCost(parseFloat(e.target.value))}
           />
           <div>
             <button type="submit" className="btn btn-success">
@@ -49,6 +72,9 @@ const GroceryList = () => {
             </button>
           </div>
         </form>
+        {hasError && (
+          <p className="help-block text-danger">You must fill in both fields.</p>
+        )}
       </div>
       <div className="card card-body border-white">
         <h1 className="h4">Grocery List</h1>
@@ -61,15 +87,20 @@ const GroceryList = () => {
             </tr>
           </thead>
           <tbody>
-          {items.map((item, i) => {
+          {groceryList.map((item, i) => {
               return (
-                <tr>
+                <tr key={`item-${item}`}>
                   <td>{item.name}</td>
-                  <td>${item.cost}</td>
+                  <td>${item.cost.toFixed(2)}</td>
                   <td>
-                    {/* <button aria-label="Delete" title="Delete" ... >
-                  &times;
-                </button> */}
+                    <button
+                      aria-label="Delete"
+                      title="Delete"
+                      className="btn"
+                      onClick={() => removeFromList(i)}
+                    >
+                      &times;
+                    </button>
                   </td>
                 </tr>
               );
@@ -78,14 +109,15 @@ const GroceryList = () => {
         </table>
         <p className="lead">
           <strong>
-            Total Cost: 
-            {
-              /* Complete me */
-            }
-            </strong>
+            Total Cost: ${calculateTotal().toFixed(2)}
+          </strong>
         </p>
         <div className="text-right">
-          <button type="button" className="btn btn-outline-success">
+          <button
+            type="button" 
+            className="btn btn-outline-success"
+            onClick={clearList}
+          >
             Clear
           </button>
         </div>
