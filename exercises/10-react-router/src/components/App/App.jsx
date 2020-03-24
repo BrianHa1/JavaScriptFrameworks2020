@@ -11,7 +11,7 @@
  */
 
 import React from "react";
-// import some things from React Router
+import { Switch, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import Category from "../Category/Category";
 
@@ -30,7 +30,14 @@ function App() {
       <div className="bg-success text-white pt-1 pb-1 mb-3">
         <h1 className="container h2">NoName E-Commerce</h1>
       </div>
-      <main className="container mb-4">{/* Complete me */}</main>
+      <main className="container mb-4">
+        <Switch>
+          <Route exact path="category/:category" component={Category} />
+        </Switch>
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </main>
     </>
   );
 }
