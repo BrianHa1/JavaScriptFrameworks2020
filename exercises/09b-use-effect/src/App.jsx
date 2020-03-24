@@ -1,7 +1,6 @@
 // Import useEffect here
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-// import Axios (or use Fetch)
 
 function App() {
   /**
@@ -18,16 +17,19 @@ function App() {
   /**
    * You may need to set something else in state
    */
-
+  const [numberOfImages, setNumberOfImages] = useState(1);
   /**
    * Make an AJAX call with the useEffect hook
    */
-
+  useEffect(() => {
+    fetch(`https.//dog.ceo/api/breeds/image/random/${numberOfImages}`)
+    .then(response => response.json())
+    .then(response => setDogImages(response.message))
+  }, [numberOfImages]);
   return (
     <div className="App">
       <h1>Dogs</h1>
-      {/* Attach an event handler */}
-      <select>
+      <select onChange={e => setNumberOfImages(e.target.value)}>
         <option>1</option>
         <option>2</option>
         <option>3</option>
