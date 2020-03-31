@@ -1,5 +1,7 @@
 // You may need to import additional things here
 import React, { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
 function LoggedInContent(props) {
   const [movies, setMovies] = useState({});
@@ -9,13 +11,29 @@ function LoggedInContent(props) {
    * Make an AJAX request to http://localhost:7000/jwt/movies to get a list of movies.
    * Be sure to provide the token in the AJAX request.
    */
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios("http://localhost:7000/jwt/movies", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+    .then(resp => setMovies(resp.data.data))
+    .catch(err => {
+      console.error(err);
+      setErrorMessage("Oh no! An unexpected error occurred!");
+    });
+  }, []);
+  
   return (
     <div className="container mt-2 mb-5">
       <div className="d-flex justify-content-between">
         <h1 className="h2">You are logged in!</h1>
-        {/* Make this button functional */}
-        <button className="btn btn-primary">Logout</button>
+        <button className="btn btn-primary" onClick={logout}>
+          Logout
+        </button>
       </div>
       <p>
         Notice that when you refresh the page, you are still logged in. That's
