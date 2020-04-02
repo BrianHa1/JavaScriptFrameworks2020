@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
+    "history": "^4.10.1"
+  }
+}
