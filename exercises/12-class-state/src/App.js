@@ -18,12 +18,13 @@ function App() {
       </div>
       <div className="container pt-4 pb-4">
         <h2 className="h3">Challenge 2 - Less Text</h2>
-        {/*<LessText text="This is a line of text." maxLength={9}/>*/}
+        {<LessText text="This is a line of text." maxLength={9}/>}
       </div>
       <div className="bg-secondary text-white pt-4 pb-4 mb-4">
         <div className="container">
           <h1 className="h3">Challenge 3 - Character Count</h1>
-          {/*<CharacterCount />*/}
+          <h2>Records the amount of words you type!</h2>
+          {<CharacterCount />}
         </div>
       </div>
     </>
