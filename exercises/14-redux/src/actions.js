@@ -7,15 +7,21 @@ export const increaseCount = () => {
 };
 
 export const decreaseCount = () => {
-  // Complete me
+  return {
+    type: types.DECREASE_COUNT
+  };
 };
 
 export const toggle = () => {
-  // Complete me
+  return {
+    type: types.TOGGLE
+  };
 };
 
 export const pickColor = color => {
-  // Complete me
+  return {
+    type: types.PICK_COLOR
+  };
 };
 
 export const setInput = todoInput => {

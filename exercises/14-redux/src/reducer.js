@@ -7,6 +7,7 @@ const reducer = (
    */
   state = {
     count: 0,
+    isVisible: false,
     todos: ["Finish this assignment", "Read a book"]
   },
   action
@@ -21,6 +22,20 @@ const reducer = (
     /**
      * Add additional case statements here
      */
+    case types.DECREASE_COUNT:
+      return {
+        ...state,
+        count: state.count - 1
+      };
+    case types.TOGGLE:
+      return {
+        ...state,
+        isVisible: true
+      };
+    case types.PICK_COLOR:
+      return {
+        ...state
+      };
     default:
       return state;
   }
