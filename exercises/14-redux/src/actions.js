@@ -20,14 +20,20 @@ export const toggle = () => {
 
 export const pickColor = color => {
   return {
-    type: types.PICK_COLOR
+    type: types.PICK_COLOR,
+    color: color
   };
 };
 
 export const setInput = todoInput => {
-  // Complete me
+  return {
+    type: types.SET_INPUT,
+    todoInput: todoInput
+  };
 };
 
 export const addTodo = () => {
-  // Complete me
+  return {
+    type: types.ADD_TODO
+  }
 };

@@ -10,7 +10,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import reducer from "./reducer"
+import reducer from "./reducer";
 import App from "./components/AppContainer"; // We will talk about the container later
 
 const store = createStore(reducer);
