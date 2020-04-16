@@ -48,7 +48,7 @@ function Todo(props) {
             onChange={(e) => setUserInput(e.target.value)}
           />
           <div className="input-group-append">
-            <button className="btn btn-primary" type="subimit" id="button-add">
+            <button className="btn btn-primary" type="submit" id="button-add">
               Add
             </button>
           </div>

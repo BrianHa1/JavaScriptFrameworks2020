@@ -8,22 +8,35 @@
  * Import something form Redux here
  */
 import Counter from "./Counter";
-
+import { connect } from "react-redux";
 /**
  * Import the actions that you need
  */
+import { increaseCount } from "../../actions";
+import { decreaseCount } from "../../actions";
+/**
+ * Complete this function. You may need to pass in arguements
+ */
+function mapStateToProps(state) {
+    return {
+        count: state.count
+    };
+}
 
 /**
  * Complete this function. You may need to pass in arguements
  */
-function mapStateToProps() {}
-
-/**
- * Complete this function. You may need to pass in arguements
- */
-function mapDispatchToProps() {}
+function mapDispatchToProps(dispatch) {
+    return {
+        increaseCount: () => dispatch(increaseCount()),
+        decreaseCount: () => dispatch(decreaseCount())
+    };
+}
 
 /**
  * Refactor this so that you are connecting the Counter to the Redux store.
  */
-export default Counter;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Counter);
